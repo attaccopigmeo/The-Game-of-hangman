@@ -5,17 +5,19 @@ display_hangman = [
     """
        -----
        |   |
-       |   O
-       |  /|\
-       |  / \
+       |   O /
+       |  /|/
+       | / |
+       | _/ \_
        -
     """,
     """
        -----
        |   |
-       |   O
-       |  /|\
-       |  /
+       |   O /
+       |  /|/
+       | / |
+       | _/ 
        -
     """,
     """
@@ -54,13 +56,12 @@ display_hangman = [
 
 WORDS = ['фонарь', 'аптека', 'репозиторий', 'лес', 'индексация', 'интерференция']
 def get_random_word():
-    """Выбирает случайное слово из списка."""
-    return random.choice(WORDS).lower()
+    return random.choice(WORDS) #Выбирает случайное слово из списка.
 
 def display_board(hangman_pics, missed_letters, correct_letters, secret_word):
     """Отображает текущее состояние игры."""
     print(hangman_pics[len(missed_letters)])
-    print("\nОшибки:", " ".join(missed_letters))
+    print("\nВаши ошибки:", " ".join(missed_letters))
     blanks = ["_" if letter not in correct_letters else letter for letter in secret_word]
     print("\nСлово:", " ".join(blanks))
 
@@ -80,7 +81,7 @@ def main():
             continue
 
         if guess in missed_letters + correct_letters:
-            print("Вы уже угадывали эту букву!")
+            print("Вы уже угадывали эту букву! Попробуйте другую.")
             continue
 
         if guess in secret_word:
